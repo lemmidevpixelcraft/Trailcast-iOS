@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trailcast – Support & FAQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --deep: #112240;
+    --blue: #1e4d8c;
+    --mid-blue: #2d6cbe;
+    --sky: #4a9ede;
+    --orange: #f4813f;
+    --amber: #f5a623;
+    --dawn: #ffd4a3;
+    --white: #f0f4f8;
+    --muted: #8ba3be;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(74,158,222,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(244,129,63,0.12) 0%, transparent 50%),
+      linear-gradient(180deg, #0d1b2a 0%, #0a1628 40%, #080f1a 100%);
+    z-index: 0;
+  }
+
+  /* Mountain silhouette */
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cpath d='M0,220 L0,160 L120,90 L200,130 L320,40 L420,100 L520,20 L640,80 L720,10 L820,70 L940,30 L1060,90 L1160,50 L1280,110 L1380,60 L1440,100 L1440,220 Z' fill='rgba(13,27,42,0.9)'/%3E%3Cpath d='M0,220 L0,180 L180,130 L280,160 L400,100 L500,140 L620,90 L740,130 L860,80 L980,120 L1100,70 L1220,115 L1340,85 L1440,120 L1440,220 Z' fill='rgba(10,22,40,0.95)'/%3E%3C/svg%3E") no-repeat bottom/cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+  }
+
+  /* Header */
+  header {
+    padding: 60px 0 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .logo-mark {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(74,158,222,0.3);
+    margin-bottom: 4px;
+  }
+
+  .logo-mark svg { width: 36px; height: 36px; }
+
+  .lang-switch {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .lang-switch a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    background: var(--glass);
+    transition: all 0.2s;
+  }
+
+  .lang-switch a.active,
+  .lang-switch a:hover {
+    color: var(--white);
+    border-color: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .app-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sky);
+  }
+
+  header h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  header h1 strong {
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--white), var(--dawn));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 440px;
+    line-height: 1.6;
+  }
+
+  /* Contact strip */
+  .contact-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--white);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-pill:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.22);
+    transform: translateY(-1px);
+  }
+
+  .contact-pill span { font-size: 15px; }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+    margin: 40px 0;
+  }
+
+  /* Section */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(244,129,63,0.3), transparent);
+  }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .faq-item {
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    background: var(--glass);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item:hover { border-color: rgba(255,255,255,0.18); }
+
+  .faq-item.open { border-color: rgba(74,158,222,0.3); }
+
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    padding: 18px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: rgba(74,158,222,0.15);
+    border: 1px solid rgba(74,158,222,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+    margin-top: 1px;
+    transition: background 0.2s;
+  }
+
+  .faq-item.open .faq-icon {
+    background: rgba(74,158,222,0.25);
+  }
+
+  .faq-chevron {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: transform 0.25s;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-a-inner {
+    padding: 0 20px 20px 58px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(240,244,248,0.75);
+    font-weight: 300;
+  }
+
+  .faq-a-inner code {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    background: rgba(255,255,255,0.08);
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--dawn);
+  }
+
+  .faq-a-inner a {
+    color: var(--sky);
+    text-decoration: none;
+  }
+
+  .faq-a-inner a:hover { text-decoration: underline; }
+
+  /* Category group */
+  .faq-group { margin-bottom: 36px; }
+
+  /* Info box */
+  .info-box {
+    padding: 20px 22px;
+    background: rgba(244,129,63,0.08);
+    border: 1px solid rgba(244,129,63,0.2);
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(240,244,248,0.8);
+    font-weight: 300;
+  }
+
+  .info-box strong { color: var(--dawn); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  footer a { color: var(--sky); text-decoration: none; }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .lang-switch { top: 16px; right: 16px; }
+    .faq-a-inner { padding-left: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-switch">
+  <a href="support-de.html" class="active">DE</a>
+  <a href="support-en.html">EN</a>
+</div>
+
+<div class="wrapper">
+  <header>
+    <div class="logo-mark">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 28 L13 12 L18 20 L24 8 L32 28 Z" fill="white" opacity="0.9"/>
+        <path d="M4 28 L13 12 L18 20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+        <circle cx="24" cy="8" r="2.5" fill="#f4813f"/>
+      </svg>
+    </div>
+    <div class="app-label">Trailcast · Support</div>
+    <h1>Wie können wir<br><strong>helfen?</strong></h1>
+    <p>Antworten auf häufige Fragen zu Trailcast — der Workout-Export- und Analyse-App für Apple Health.</p>
+    <div class="contact-strip">
+      <a href="mailto:support@lemmidevpixelcraft.com" class="contact-pill">
+        <span>✉️</span> support@lemmidevpixelcraft.com
+      </a>
+    </div>
+  </header>
+
+  <!-- HealthKit / Berechtigungen -->
+  <div class="faq-group">
+    <div class="section-label">Berechtigungen & Apple Health</div>
+    <div class="faq-list">
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">🏥</span>
+          Warum werden keine Workouts angezeigt?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Trailcast benötigt Zugriff auf Apple Health, um deine Workouts lesen zu können. Öffne <code>Einstellungen → Datenschutz & Sicherheit → Health → Trailcast</code> und aktiviere alle Kategorien (insbesondere „Workouts" und „Route"). Anschließend die App neu starten.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">📍</span>
+          Warum fehlen die GPS-Routen bei einigen Workouts?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            GPS-Routen sind nur verfügbar, wenn das Workout ursprünglich mit aktiviertem GPS aufgezeichnet wurde (z. B. mit Apple Watch, iPhone oder einer kompatiblen App). Indoor-Workouts oder Trainings ohne GPS-Signal haben keine Routendaten.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">💓</span>
+          Herzfrequenzdaten fehlen — was tun?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Stelle sicher, dass in <code>Einstellungen → Health → Trailcast</code> auch „Herzfrequenz" freigegeben ist. Herzfrequenzdaten werden nur für Workouts angezeigt, bei denen sie tatsächlich aufgezeichnet wurden — z. B. mit Apple Watch oder einem Brustgurt.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Export & Import -->
+  <div class="faq-group">
+    <div class="section-label">Export & Import</div>
+    <div class="faq-list">
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">📤</span>
+          Wie viele Exporte sind kostenlos?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Mit dem kostenlosen Plan stehen dir <strong>5 Exporte pro Monat</strong> (GPX, CSV oder TCX) und <strong>3 Share-Cards</strong> zur Verfügung. Mit Trailcast Pro sind alle Exporte und Share-Cards unbegrenzt.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">🗺️</span>
+          GPX-Import funktioniert nicht
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Stelle sicher, dass es sich um eine gültige <code>.gpx</code>-Datei mit GPS-Koordinaten handelt. Dateien von Strava, Komoot, Garmin und Wahoo werden unterstützt. Trailcast importiert GPX-Dateien zur Vorschau — sie werden nicht als neues Workout in Apple Health gespeichert.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">⚙️</span>
+          Welche Apps und Plattformen unterstützen die Export-Formate?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <strong>GPX:</strong> Strava, Komoot, Garmin Connect, AllTrails, Wahoo, Google Maps<br>
+            <strong>TCX:</strong> Garmin Connect, TrainingPeaks, Zwift<br>
+            <strong>CSV:</strong> Excel, Numbers, Google Sheets, eigene Analysen
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Trailcast Pro -->
+  <div class="faq-group">
+    <div class="section-label">Trailcast Pro & Abonnement</div>
+    <div class="faq-list">
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">⭐</span>
+          Wie kündige ich Trailcast Pro?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Öffne <code>Einstellungen → [Dein Name] → Abonnements → Trailcast Pro → Abonnement kündigen</code>. Das Abo bleibt bis zum Ende des bezahlten Zeitraums aktiv. Eine Kündigung über die Trailcast-App ist nicht möglich — das ist Apple-Richtlinie für alle App Store-Apps.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">🔄</span>
+          Ich habe Pro bereits gekauft — wie stelle ich es auf einem neuen Gerät wieder her?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Tippe in den Trailcast-Einstellungen auf „Käufe wiederherstellen". Stelle sicher, dass du mit derselben Apple ID angemeldet bist, die für den ursprünglichen Kauf verwendet wurde. Ein Abonnement gilt automatisch für alle Geräte mit derselben Apple ID.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">💳</span>
+          Gibt es eine Rückerstattung?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Rückerstattungen werden von Apple bearbeitet. Besuche <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a> und wähle den entsprechenden Kauf aus. Wir haben keinen Einfluss auf Rückerstattungsentscheidungen — diese liegen vollständig bei Apple.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Wetter -->
+  <div class="faq-group">
+    <div class="section-label">Wetter & Vorhersage</div>
+    <div class="faq-list">
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">🌤️</span>
+          Warum werden keine Wetterdaten angezeigt?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Wetterdaten erfordern eine aktive Internetverbindung und GPS-Daten im Workout. Stelle sicher, dass der Standortzugriff für Trailcast auf „Beim Verwenden der App" gesetzt ist: <code>Einstellungen → Datenschutz → Ortungsdienste → Trailcast</code>.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">🌡️</span>
+          Was ist der Ride Score?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Der Ride Score (0–100) bewertet, wie ideal die Wetterbedingungen für dein nächstes Training sind. Er berücksichtigt Temperatur, Windgeschwindigkeit, Niederschlagswahrscheinlichkeit und Luftfeuchtigkeit. Ab 70 Punkten sind die Bedingungen optimal.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Datenschutz -->
+  <div class="faq-group">
+    <div class="section-label">Datenschutz & Datensicherheit</div>
+    <div class="faq-list">
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">🔒</span>
+          Werden meine Gesundheitsdaten in der Cloud gespeichert?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Nein. Trailcast verarbeitet alle Daten ausschließlich lokal auf deinem Gerät. Es gibt keine Trailcast-Server, keine Nutzerkonten und keine externe Datenspeicherung. Deine Gesundheitsdaten verlassen dein iPhone nicht.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggle(this)">
+        <button class="faq-q">
+          <span class="faq-icon">📵</span>
+          Enthält die App Werbung oder Tracking?
+          <span class="faq-chevron">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Trailcast enthält keinerlei Werbung, keine Drittanbieter-Analytics-SDKs und kein Nutzer-Tracking. Die einzige externe Verbindung ist WeatherKit (Apple) für Wetterdaten.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="info-box">
+    <strong>Dein Problem ist nicht dabei?</strong><br>
+    Schreib uns direkt an <a href="mailto:support@lemmidevpixelcraft.com" style="color:#f4813f;">support@lemmidevpixelcraft.com</a> — wir antworten in der Regel innerhalb von 24–48 Stunden.
+  </div>
+
+  <footer>
+    <p>© 2025 Simon Außerlechner · LemmiDevPixelCraft</p>
+    <p style="margin-top:6px;">
+      <a href="datenschutz-de.html">Datenschutzerklärung</a> &nbsp;·&nbsp;
+      <a href="support-en.html">English</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+function toggle(item) {
+  const answer = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-a').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+</script>
+</body>
+</html>

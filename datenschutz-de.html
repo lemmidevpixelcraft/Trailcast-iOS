@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trailcast – Datenschutzerklärung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --blue: #1e4d8c;
+    --sky: #4a9ede;
+    --orange: #f4813f;
+    --dawn: #ffd4a3;
+    --white: #f0f4f8;
+    --muted: #8ba3be;
+    --glass: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 40% at 20% 0%, rgba(74,158,222,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 35% at 90% 90%, rgba(244,129,63,0.10) 0%, transparent 50%),
+      linear-gradient(180deg, #0d1b2a 0%, #080f1a 100%);
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180' preserveAspectRatio='none'%3E%3Cpath d='M0,180 L0,130 L160,70 L280,110 L400,40 L540,90 L660,20 L800,75 L920,35 L1060,80 L1180,45 L1320,95 L1440,60 L1440,180 Z' fill='rgba(8,15,26,0.95)'/%3E%3C/svg%3E") no-repeat bottom/cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+  }
+
+  .lang-switch {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .lang-switch a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    background: var(--glass);
+    transition: all 0.2s;
+  }
+
+  .lang-switch a.active,
+  .lang-switch a:hover {
+    color: var(--white);
+    border-color: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.1);
+  }
+
+  header {
+    padding: 60px 0 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .logo-mark {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(74,158,222,0.25);
+    margin-bottom: 4px;
+  }
+
+  .logo-mark svg { width: 30px; height: 30px; }
+
+  .app-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sky);
+  }
+
+  header h1 {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+
+  header h1 strong {
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--white), var(--dawn));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .meta-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 4px 10px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+  }
+
+  /* Summary cards */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .summary-card {
+    padding: 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .summary-card:hover {
+    border-color: rgba(74,158,222,0.3);
+    transform: translateY(-2px);
+  }
+
+  .summary-card .icon { font-size: 28px; margin-bottom: 10px; display: block; }
+
+  .summary-card .label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .summary-card .desc {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 40px;
+    padding: 28px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .section p, .section li {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(240,244,248,0.75);
+    font-weight: 300;
+  }
+
+  .section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .section ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .section ul li::before {
+    content: '—';
+    color: var(--sky);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .section p + p { margin-top: 12px; }
+
+  .section a { color: var(--sky); text-decoration: none; }
+  .section a:hover { text-decoration: underline; }
+
+  .highlight {
+    display: inline;
+    background: rgba(74,158,222,0.12);
+    border: 1px solid rgba(74,158,222,0.2);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--dawn);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(74,158,222,0.1);
+    border: 1px solid rgba(74,158,222,0.2);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--sky);
+    margin: 2px 2px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+    margin: 20px 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  footer a { color: var(--sky); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .lang-switch { top: 16px; right: 16px; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .section { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-switch">
+  <a href="datenschutz-de.html" class="active">DE</a>
+  <a href="privacy-en.html">EN</a>
+</div>
+
+<div class="wrapper">
+  <header>
+    <div class="logo-mark">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 28 L13 12 L18 20 L24 8 L32 28 Z" fill="white" opacity="0.9"/>
+        <circle cx="24" cy="8" r="2.5" fill="#f4813f"/>
+      </svg>
+    </div>
+    <div class="app-label">Trailcast · Datenschutz</div>
+    <h1><strong>Datenschutzerklärung</strong></h1>
+    <div class="meta-row">
+      <span class="meta-tag">Version 1.0</span>
+      <span class="meta-tag">Stand: Mai 2025</span>
+      <span class="meta-tag">iOS App</span>
+    </div>
+  </header>
+
+  <!-- Summary -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <span class="icon">🔒</span>
+      <span class="label">Lokal &amp; privat</span>
+      <span class="desc">Alle Daten bleiben auf deinem Gerät</span>
+    </div>
+    <div class="summary-card">
+      <span class="icon">📵</span>
+      <span class="label">Kein Account</span>
+      <span class="desc">Keine Registrierung erforderlich</span>
+    </div>
+    <div class="summary-card">
+      <span class="icon">🚫</span>
+      <span class="label">Keine Werbung</span>
+      <span class="desc">Kein Tracking, keine Analyse-SDKs</span>
+    </div>
+    <div class="summary-card">
+      <span class="icon">🍎</span>
+      <span class="label">Apple-only</span>
+      <span class="desc">HealthKit + WeatherKit, sonst nichts</span>
+    </div>
+  </div>
+
+  <!-- 1. Verantwortlicher -->
+  <div class="section">
+    <span class="section-num">01</span>
+    <h2>Verantwortlicher</h2>
+    <p>
+      <strong>Simon Außerlechner</strong><br>
+      LemmiDevPixelCraft<br>
+      Österreich<br><br>
+      E-Mail: <a href="mailto:support@lemmidevpixelcraft.com">support@lemmidevpixelcraft.com</a>
+    </p>
+  </div>
+
+  <!-- 2. Welche Daten -->
+  <div class="section">
+    <span class="section-num">02</span>
+    <h2>Welche Daten verarbeitet Trailcast?</h2>
+    <p>Trailcast liest ausschließlich Daten, die du explizit in Apple Health freigibst. Folgende HealthKit-Kategorien werden gelesen:</p>
+    <ul>
+      <li>Workouts (Typ, Datum, Dauer, Distanz, Kalorien)</li>
+      <li>GPS-Routendaten (<span class="highlight">HKWorkoutRoute</span>)</li>
+      <li>Herzfrequenz-Samples</li>
+      <li>Aktive Energie / verbrannte Kalorien</li>
+      <li>Schritte und Distanz</li>
+    </ul>
+    <div class="divider"></div>
+    <p><strong>Standort (für Wetter):</strong> Für die Wetteranzeige wird dein aktueller Standort an WeatherKit (Apple) übermittelt. Der Standort wird dabei <em>nicht</em> gespeichert oder protokolliert.</p>
+  </div>
+
+  <!-- 3. Zweck -->
+  <div class="section">
+    <span class="section-num">03</span>
+    <h2>Zweck der Datenverarbeitung</h2>
+    <p>Alle Gesundheitsdaten werden ausschließlich für folgende Funktionen verwendet:</p>
+    <ul>
+      <li>Darstellung und Analyse deiner Workouts in der App</li>
+      <li>Export in GPX-, CSV- und TCX-Dateien auf deinem Gerät</li>
+      <li>Berechnung von Effort Score, Pace Zones und Statistiken</li>
+      <li>Erstellung von Share-Cards für Social Media (optional)</li>
+    </ul>
+    <div class="divider"></div>
+    <p>Die Daten werden <strong>nicht</strong> für Werbung, Profiling, Verkauf oder sonstige kommerzielle Zwecke genutzt.</p>
+  </div>
+
+  <!-- 4. Datenspeicherung -->
+  <div class="section">
+    <span class="section-num">04</span>
+    <h2>Wo werden die Daten gespeichert?</h2>
+    <p>
+      Trailcast betreibt <strong>keine eigenen Server</strong>. Alle Daten werden ausschließlich lokal auf deinem iPhone verarbeitet und gespeichert. Es findet keine Übertragung an externe Dienste statt — mit der einzigen Ausnahme:
+    </p>
+    <div class="divider"></div>
+    <p>
+      <strong>WeatherKit (Apple):</strong> Für Wetterdaten wird eine anonymisierte Standortanfrage an Apples WeatherKit-Dienst gesendet. Diese Anfragen enthalten keine persönlich identifizierbaren Informationen. Apple's Datenschutzrichtlinie gilt: <a href="https://www.apple.com/legal/privacy" target="_blank">apple.com/legal/privacy</a>
+    </p>
+  </div>
+
+  <!-- 5. HealthKit -->
+  <div class="section">
+    <span class="section-num">05</span>
+    <h2>HealthKit — besonderer Datenschutz</h2>
+    <p>Gemäß Apple HealthKit-Richtlinien gelten für Gesundheitsdaten besondere Schutzbestimmungen:</p>
+    <ul>
+      <li>HealthKit-Daten werden <strong>nicht</strong> mit Drittanbietern geteilt</li>
+      <li>HealthKit-Daten werden <strong>nicht</strong> für Werbung verwendet</li>
+      <li>HealthKit-Daten werden <strong>nicht</strong> außerhalb der App verkauft oder lizenziert</li>
+      <li>Der Zugriff erfolgt ausschließlich <strong>read-only</strong> — Trailcast schreibt keine Daten in Apple Health</li>
+    </ul>
+    <div class="divider"></div>
+    <p>Du kannst den Datenzugriff jederzeit unter <span class="highlight">Einstellungen → Health → Trailcast</span> anpassen oder vollständig entziehen.</p>
+  </div>
+
+  <!-- 6. In-App-Käufe -->
+  <div class="section">
+    <span class="section-num">06</span>
+    <h2>In-App-Käufe &amp; Zahlungen</h2>
+    <p>
+      Trailcast Pro-Abonnements werden vollständig über das App Store-System von Apple abgewickelt. Trailcast hat <strong>keinen Zugriff auf Zahlungsdaten</strong>. Die Verarbeitung von Zahlungsinformationen erfolgt ausschließlich durch Apple gemäß deren Datenschutzrichtlinie.
+    </p>
+  </div>
+
+  <!-- 7. Rechte -->
+  <div class="section">
+    <span class="section-num">07</span>
+    <h2>Deine Rechte (DSGVO)</h2>
+    <p>Da Trailcast keine personenbezogenen Daten auf eigenen Servern speichert, entfallen klassische Anfragen wie Auskunft, Berichtigung oder Löschung weitgehend. Dennoch hast du folgende Rechte:</p>
+    <ul>
+      <li><strong>Datenzugriff widerrufen:</strong> Jederzeit unter <span class="highlight">Einstellungen → Health → Trailcast</span></li>
+      <li><strong>App deinstallieren:</strong> Alle lokal gespeicherten App-Daten werden dabei gelöscht</li>
+      <li><strong>Abonnement kündigen:</strong> Jederzeit über App Store-Einstellungen</li>
+      <li><strong>Kontakt bei Fragen:</strong> <a href="mailto:support@lemmidevpixelcraft.com">support@lemmidevpixelcraft.com</a></li>
+    </ul>
+  </div>
+
+  <!-- 8. Kinder -->
+  <div class="section">
+    <span class="section-num">08</span>
+    <h2>Kinder</h2>
+    <p>
+      Trailcast ist nicht für Kinder unter 13 Jahren konzipiert. Die App richtet sich ausschließlich an Personen im Alter von 13 Jahren und älter.
+    </p>
+  </div>
+
+  <!-- 9. Änderungen -->
+  <div class="section">
+    <span class="section-num">09</span>
+    <h2>Änderungen dieser Datenschutzerklärung</h2>
+    <p>
+      Bei wesentlichen Änderungen dieser Erklärung wird das Datum oben auf dieser Seite aktualisiert. Wir empfehlen, diese Seite gelegentlich zu besuchen.
+    </p>
+  </div>
+
+  <footer>
+    <p>© 2025 Simon Außerlechner · LemmiDevPixelCraft</p>
+    <p style="margin-top:6px;">
+      <a href="support-de.html">Support & FAQ</a> &nbsp;·&nbsp;
+      <a href="privacy-en.html">English</a>
+    </p>
+  </footer>
+</div>
+
+</body>
+</html>
